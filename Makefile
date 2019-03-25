@@ -13,6 +13,9 @@ coverage:
 coverage-html:
 	coverage html
 
+docker:
+	docker-compose up -d --build
+
 migrations:
 	python backend/manage.py makemigrations
 	python backend/manage.py migrate
