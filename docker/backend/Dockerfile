@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 
 COPY ./backend .
 
-COPY ./run.sh .
+COPY ./docker/script/entrypoint.sh ./docker/script/run.sh /

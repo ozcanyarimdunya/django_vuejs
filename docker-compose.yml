@@ -9,6 +9,7 @@ services:
 
   database:
     image: postgres:alpine
+    restart: unless-stopped
     volumes:
       - 'postgres_data:/var/lib/postgresql/data'
     env_file:
@@ -21,11 +22,13 @@ services:
       args:
         HTTP_PROXY: '' #http://127.0.0.1:3128
     restart: unless-stopped
+    depends_on:
+      - database
     volumes:
       - 'templates:/app/templates'
       - 'media:/app/media'
     ports:
-      - 8000:80
+      - 80:80
 
   backend:
     build:
@@ -34,7 +37,10 @@ services:
       args:
         HTTP_PROXY: '' #http://127.0.0.1:3128
     restart: unless-stopped
-    command: sh run.sh
+    depends_on:
+      - database
+    command: /run.sh
+    entrypoint: /entrypoint.sh
     env_file:
       - ./docker/backend/.env
     volumes:

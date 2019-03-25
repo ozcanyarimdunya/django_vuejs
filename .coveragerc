@@ -4,5 +4,6 @@ show_missing = True
 omit =
     backend/manage.py
     backend/config/wsgi.py
+    backend/config/settings/__init__.py
     backend/apps/*/migrations/*
     backend/apps/*/tests.py
