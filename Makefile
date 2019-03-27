@@ -13,16 +13,25 @@ coverage:
 coverage-html:
 	coverage html
 
-docker:
+dockerd:
 	docker-compose up -d --build
+
+install:
+	pip install -r backend/requirements.txt
+	cd frontend && npm install
 
 migrations:
 	python backend/manage.py makemigrations
 	python backend/manage.py migrate
 
-install:
-	pip install -r backend/requirements.txt
-	cd frontend && npm install
+run-backend:
+	python backend/manage.py runserver
+
+run-frontend:
+	cd frontend && npm run serve
+
+superuser:
+	python backend/manage.py createsuperuser
 
 test:
 	python backend/manage.py test apps

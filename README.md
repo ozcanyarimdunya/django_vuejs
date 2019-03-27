@@ -1,6 +1,6 @@
 # Django/Rest with VueJS
 
-## Local Development
+### Installation
 
 Clone the repository, then
 
@@ -10,11 +10,31 @@ make install
 
 ```bash
 make
+``` 
+
+### Local Development
+
+Create a superuser
+
+```bash
+make superuser
 ```
 
-Application setup finished. 
+Open 2 terminals and then type
 
-Now testing
+```bash
+make run-backend
+```
+
+```bash
+make run-frontend
+```
+
+Backend will be served at *http://localhost:8000* and frontend will served at *http://localhost:8080*
+
+### Test
+
+**Backend**
 
 ```bash
 make test
@@ -24,8 +44,10 @@ make test
 make coverage
 ```
 
-## Deployment
+### Deployment on docker
 
 ```bash
-make docker
+make dockerd
 ```
+
+Application will be served at *http://ip-of-your-server:8000*
