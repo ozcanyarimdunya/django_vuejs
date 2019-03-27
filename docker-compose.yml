@@ -2,7 +2,6 @@ version: '3'
 
 volumes:
   postgres_data: {}
-  templates: {}
   media: {}
 
 services:
@@ -13,38 +12,20 @@ services:
     volumes:
       - 'postgres_data:/var/lib/postgresql/data'
     env_file:
-      - ./docker/backend/.env
+      - docker/.env
 
-  frontend:
+  webapp:
     build:
       context: .
-      dockerfile: ./docker/frontend/Dockerfile
-      args:
-        HTTP_PROXY: '' #http://127.0.0.1:3128
-    restart: unless-stopped
-    depends_on:
-      - database
-    volumes:
-      - 'templates:/app/templates'
-      - 'media:/app/media'
-    ports:
-      - 80:80
-
-  backend:
-    build:
-      context: .
-      dockerfile: ./docker/backend/Dockerfile
-      args:
-        HTTP_PROXY: '' #http://127.0.0.1:3128
+      dockerfile: docker/Dockerfile
     restart: unless-stopped
     depends_on:
       - database
     command: /run.sh
     entrypoint: /entrypoint.sh
     env_file:
-      - ./docker/backend/.env
+      - docker/.env
+    ports:
+      - 8000:8000
     volumes:
-      - 'templates:/app/assets/templates'
       - 'media:/app/assets/media'
-    expose:
-      - 8000

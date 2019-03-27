@@ -31,3 +31,12 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8080',
     '0.0.0.0:8080',
 )
+
+INSTALLED_APPS += [
+    'corsheaders'
+]
+
+# 3rd party middleware
+# This middleware need to be in front of CommonMiddleware
+common_index = MIDDLEWARE.index('django.middleware.common.CommonMiddleware')
+MIDDLEWARE.insert(common_index, 'corsheaders.middleware.CorsMiddleware')

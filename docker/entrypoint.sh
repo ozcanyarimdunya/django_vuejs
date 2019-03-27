@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-set -o errexit
-set -o pipefail
+#set -o errexit
+#set -o pipefail
 cmd="$@"
 
 function postgres_ready(){

@@ -11,6 +11,7 @@ from . import models
 from . import serializers
 
 
+# Views with Generic Class Based Views
 class TodoList(ListAPIView):
     queryset = models.Todo.objects.all()
     serializer_class = serializers.TodoSerializer
@@ -59,6 +60,7 @@ class TodoDelete(DestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
+# Views with ModelViewSet
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response

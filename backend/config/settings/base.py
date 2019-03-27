@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # 3rd party applications
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders',
 
     # my applications
     'apps.todo.apps.TodoConfig',
@@ -50,7 +49,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # 3rd party middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -116,7 +114,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets', 'static')
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'assets', 'static-dev')
+]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'assets', 'media')
 
